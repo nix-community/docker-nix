@@ -8,7 +8,6 @@ RUN \
     for i in $(seq 1 30); do echo "nixbld$i:x:$((30000 + $i)):30000:::" >> /etc/passwd; done && \
     mkdir -m 0755 /nix && \
     USER=root sh /nix-*-x86_64-linux/install && \
-    rm -rf /nix-*-x86_64-linux && \
     echo ". /root/.nix-profile/etc/profile.d/nix.sh" >> /etc/profile && \
     . /etc/profile && \
     nix-env -iA nixpkgs.cacert && \
