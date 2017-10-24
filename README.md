@@ -10,3 +10,7 @@ FROM numtide/nix:1.11
 
 RUN nix-build -A pythonFull '<nixpkgs>'
 ```
+
+## TODO
+
+* /etc/passwd contains a lot of useless entries

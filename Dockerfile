@@ -26,6 +26,9 @@ RUN nix-env -iA \
 
 RUN nix-collect-garbage -d
 
+# Fixes root login shell
+RUN sed -e "s|/bin/ash|/bin/bash|g" -i /etc/passwd
+
 # Now create the actual image
 FROM scratch
 COPY --from=FETCHER /etc/group /etc/group
