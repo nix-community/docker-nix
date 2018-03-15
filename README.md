@@ -6,7 +6,7 @@ dependencies.
 ## Usage
 
 ```Dockerfile
-FROM numtide/nix:1.11
+FROM nixorg/nix:latest
 
 RUN nix-build -A pythonFull '<nixpkgs>'
 ```
