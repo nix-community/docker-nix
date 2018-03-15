@@ -1,8 +1,19 @@
 #!/bin/sh
 # Installs nix in archlinux
 set -eux
+set -o pipefail
+. ./version.env
 
-wget -O- https://nixos.org/releases/nix/nix-$NIX_RELEASE/nix-$NIX_RELEASE-x86_64-linux.tar.bz2 | tar xjv
+wget -O- https://nixos.org/releases/nix/nix-$NIX_RELEASE/nix-$NIX_RELEASE-x86_64-linux.tar.bz2 > nix.tar.bz2
+actual_hash="$(sha256sum -b "nix.tar.bz2" | cut -c1-64)"
+
+
+if [ "$NIX_HASH" != "$actual_hash" ]; then
+    echo "SHA-256 hash mismatch in '$url'; expected $NIX_HASH, got $actual_hash"
+    exit 1
+fi
+
+tar -xjvf nix.tar.bz2
 
 addgroup -g 30000 -S nixbld
 
