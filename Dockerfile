@@ -7,10 +7,8 @@ FROM alpine:3.6 as FETCHER
 # Enable HTTPS support in wget.
 RUN apk add --no-cache openssl ca-certificates
 
-# Select which nix release to bootstrap with
-ARG NIX_RELEASE=1.11.14
-
 # Install it in busybox for a start
+COPY ./version.env ./version.env
 COPY ./alpine-install.sh ./alpine-install.sh
 RUN ./alpine-install.sh
 
