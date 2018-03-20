@@ -27,6 +27,7 @@ RUN nix-env -iA \
   nixpkgs.gnutar \
   nixpkgs.gzip \
   nixpkgs.iana-etc \
+  nixpkgs.openssh \
   nixpkgs.xz \
   && true
 
