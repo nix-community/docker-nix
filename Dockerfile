@@ -23,6 +23,7 @@ RUN nix-env -iA \
   nixpkgs.bashInteractive \
   nixpkgs.cacert \
   nixpkgs.coreutils \
+  nixpkgs.gitMinimal \
   nixpkgs.gnutar \
   nixpkgs.gzip \
   nixpkgs.xz \
