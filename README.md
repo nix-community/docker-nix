@@ -13,6 +13,14 @@ FROM nixorg/nix:latest
 RUN nix run -f channel:nixos-18.03 hello -c hello
 ```
 
+### CircleCI
+
+CircleCI assumes that git and openssh are available in the container to clone the repository. This is out of our control and we therefor cannot rely on nix-shell to pull in these dependencies.
+
+Another image at `nixorg/nix:circleci` is published that contains these additional dependencies.
+
+This branch is regularily rebased on top of master.
+
 ## Update
 
 The `./update.sh` script is used to get the latest nix release.
