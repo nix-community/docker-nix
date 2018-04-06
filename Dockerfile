@@ -26,6 +26,7 @@ RUN nix-env -iA \
   nixpkgs.gitMinimal \
   nixpkgs.gnutar \
   nixpkgs.gzip \
+  nixpkgs.iana-etc \
   nixpkgs.xz \
   && true
 
@@ -54,6 +55,8 @@ RUN ["/nix/var/nix/profiles/default/bin/ln", "-s", "/nix/var/nix/profiles/defaul
 RUN \
   mkdir -p /usr/bin /etc/ssl/certs && \
   ln -s $NIX_SSL_CERT_FILE /etc/ssl/certs/ca-certificates.crt && \
+  ln -s /nix/var/nix/profiles/default/etc/protocols /etc/protocols && \
+  ln -s /nix/var/nix/profiles/default/etc/services /etc/services && \
   ln -s /nix/var/nix/profiles/default/bin/env /usr/bin/env
 
 ONBUILD ENV \
