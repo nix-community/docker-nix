@@ -49,7 +49,6 @@ COPY --from=FETCHER /etc/passwd /etc/passwd
 COPY --from=FETCHER /etc/shadow /etc/shadow
 COPY --from=FETCHER /nix /nix
 COPY --from=FETCHER /root /root
-COPY --from=FETCHER /tmp /tmp
 
 RUN ["/nix/var/nix/profiles/default/bin/ln", "-s", "/nix/var/nix/profiles/default/bin", "/bin"]
 RUN \
@@ -57,7 +56,8 @@ RUN \
   ln -s $NIX_SSL_CERT_FILE /etc/ssl/certs/ca-certificates.crt && \
   ln -s /nix/var/nix/profiles/default/etc/protocols /etc/protocols && \
   ln -s /nix/var/nix/profiles/default/etc/services /etc/services && \
-  ln -s /nix/var/nix/profiles/default/bin/env /usr/bin/env
+  ln -s /nix/var/nix/profiles/default/bin/env /usr/bin/env && \
+  mkdir --mode=1777 /tmp
 
 ONBUILD ENV \
     ENV=/nix/var/nix/profiles/default/etc/profile.d/nix.sh \
