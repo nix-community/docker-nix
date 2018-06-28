@@ -28,3 +28,8 @@ The `./update.sh` script is used to get the latest nix release.
 ## TODO
 
 * /etc/passwd contains a lot of useless entries
+
+# See also
+
+* nixos/nix: published from the nixos/nix repo
+* lnl7/nix: https://github.com/LnL7/nix-docker
