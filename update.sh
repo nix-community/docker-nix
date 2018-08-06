@@ -5,11 +5,17 @@ curl https://nixos.org/nix-release.tt > release.tt
 set -eux
 
 getVal() {
-    cat release.tt \
-        | awk ' $1 == "'"$1"'" {print $3}'
+  awk ' $1 == "'"$1"'" {print $3}' release.tt
 }
 
+fetchNix() {
+  wget -O- https://nixos.org/releases/nix/nix-$NIX_RELEASE/nix-$NIX_RELEASE-x86_64-linux.tar.bz2
+}
+
+NIX_RELEASE=$(getVal latestNixVersion)
+NIX_HASH=$(fetchNix "$NIX_RELEASE" | sha256sum | cut -c1-64)
+
 (
-    echo "NIX_RELEASE=$(getVal latestNixVersion)"
-    echo "NIX_HASH=$(getVal nix_hash_x86_64_linux)"
+    echo "NIX_RELEASE=$NIX_RELEASE"
+    echo "NIX_HASH=$NIX_HASH"
 ) > version.env
