@@ -2,7 +2,7 @@
 # It kicks of the installation of Nix in a temporary alpine container,
 # after which we copy the installation to an empty image that only contains Nix.
 
-FROM alpine:3.6 as FETCHER
+FROM alpine:3.8 as FETCHER
 
 # Enable HTTPS support in wget.
 RUN apk add --no-cache openssl ca-certificates
