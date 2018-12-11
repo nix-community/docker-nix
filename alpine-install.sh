@@ -9,7 +9,7 @@ actual_hash="$(sha256sum -b "nix.tar.bz2" | cut -c1-64)"
 
 
 if [ "$NIX_HASH" != "$actual_hash" ]; then
-    echo "SHA-256 hash mismatch in '$url'; expected $NIX_HASH, got $actual_hash"
+    echo "SHA-256 hash mismatch; expected $NIX_HASH, got $actual_hash"
     exit 1
 fi
 

@@ -5,7 +5,7 @@ curl https://nixos.org/nix-release.tt > release.tt
 set -eux
 
 getVal() {
-  awk ' $1 == "'"$1"'" {print $3}' release.tt
+  awk ' $1 == "'"$1"'" {print $3}' release.tt | sed 's/\"//g'
 }
 
 fetchNix() {
