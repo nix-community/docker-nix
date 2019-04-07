@@ -9,7 +9,7 @@ getVal() {
 }
 
 fetchNix() {
-  wget -O- https://nixos.org/releases/nix/nix-$NIX_RELEASE/nix-$NIX_RELEASE-x86_64-linux.tar.bz2
+  wget -O- "https://nixos.org/releases/nix/nix-$NIX_RELEASE/nix-$NIX_RELEASE-x86_64-linux.tar.bz2"
 }
 
 NIX_RELEASE=$(getVal latestNixVersion)
