@@ -5,8 +5,8 @@ set -o pipefail
 # shellcheck disable=SC1091
 . ./version.env
 
-wget -O- "https://nixos.org/releases/nix/nix-$NIX_RELEASE/nix-$NIX_RELEASE-x86_64-linux.tar.bz2" > nix.tar.bz2
-actual_hash="$(sha256sum -b "nix.tar.bz2" | cut -c1-64)"
+wget -O- "https://nixos.org/releases/nix/nix-$NIX_RELEASE/nix-$NIX_RELEASE-x86_64-linux.tar.xz" > nix.tar.xz
+actual_hash="$(sha256sum -b nix.tar.xz | cut -c1-64)"
 
 
 if [ "$NIX_HASH" != "$actual_hash" ]; then
@@ -17,7 +17,7 @@ fi
 mkdir -p /etc/nix
 echo "sandbox = false" >> /etc/nix/nix.conf
 
-tar -xjvf nix.tar.bz2
+tar -xJvf nix.tar.xz
 
 addgroup -g 30000 -S nixbld
 
