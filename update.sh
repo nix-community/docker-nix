@@ -18,4 +18,4 @@ NIX_HASH=$(fetchNix "$NIX_RELEASE" | sha256sum | cut -c1-64)
 (
     echo "NIX_RELEASE=$NIX_RELEASE"
     echo "NIX_HASH=$NIX_HASH"
-) > version.env
+) > phase0/version.env

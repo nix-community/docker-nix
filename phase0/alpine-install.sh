@@ -14,9 +14,6 @@ if [ "$NIX_HASH" != "$actual_hash" ]; then
     exit 1
 fi
 
-mkdir -p /etc/nix
-echo "sandbox = false" >> /etc/nix/nix.conf
-
 tar -xJvf nix.tar.xz
 
 addgroup -g 30000 -S nixbld
