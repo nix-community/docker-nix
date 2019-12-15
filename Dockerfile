@@ -20,15 +20,13 @@ COPY ./phase1 .
 RUN nix-build --option sandbox false profile.nix
 RUN nix-env --profile /nix/var/nix/profiles/default --set $(readlink -f ./result)
 
-# Remove old things
+# Garbage collect, remove old channel
 RUN \
   nix-channel --remove nixpkgs && \
   rm -rf /nix/store/*-nixpkgs* && \
-  nix-collect-garbage -d && \
-  nix-store --gc --option keep-derivations false
-
-# Fixes the missing *-nixpkgs*
-RUN nix-store --verify --check-contents
+  /nix/var/nix/profiles/default/bin/nix-collect-garbage -d && \
+  /nix/var/nix/profiles/default/bin/nix-store --gc --option keep-derivations false && \
+  /nix/var/nix/profiles/default/bin/nix-store --verify --check-contents
 
 # Phase 2: and now ditch alpine
 FROM scratch
