@@ -1,5 +1,7 @@
 # Nix docker image
 
+**STATUS: Deprecated**: see https://github.com/nix-community/docker-nixpkgs
+
 This improves on top of the nixos/nix image as it removes all Alpine Linux
 dependencies.
 
